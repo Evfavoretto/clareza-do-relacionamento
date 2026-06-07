@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Diagnóstico Gratuito do Relacionamento | Evandro Favoretto</title>
+  <meta name="description" content="Descubra por que vocês estão se afastando, mesmo que ainda exista amor. Faça o diagnóstico gratuito e entenda o padrão que pode estar afetando seu relacionamento." />
+
+  <meta property="og:title" content="Diagnóstico Gratuito do Relacionamento" />
+  <meta property="og:description" content="Por que vocês estão se afastando, mesmo que ainda exista amor?" />
+  <meta property="og:type" content="website" />
+
+  <style>
+    :root {
+      --rose: #C9376E;
+      --rose-dark: #9F2454;
+      --rose-light: #FCE9F0;
+      --blue: #4DA6FF;
+      --blue-light: #E6F3FF;
+      --purple: #7C3AED;
+      --green: #10B981;
+      --ink: #111827;
+      --soft: #667085;
+      --line: #E5E7EB;
+      --bg: #FFFFFF;
+      --card: #FFFFFF;
+      --shadow: 0 18px 45px rgba(15, 23, 42, .08);
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    .topbar {
+      background: var(--rose);
+      color: #fff;
+      text-align: center;
+      padding: 12px 18px;
+      font-weight: 800;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      font-size: 14px;
+    }
+
+    .wrap {
+      width: min(1120px, 92%);
+      margin: 0 auto;
+    }
+
+    .hero {
+      padding: 56px 0 36px;
+      background:
+        radial-gradient(circle at top left, var(--rose-light), transparent 36%),
+        radial-gradient(circle at bottom right, var(--blue-light), transparent 36%),
+        #fff;
+    }
+
+    .hero-card {
+      background: rgba(255,255,255,.88);
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      padding: 34px 24px;
+      text-align: center;
+      box-shadow: var(--shadow);
+    }
+
+    .eyebrow {
+      color: var(--rose);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      font-size: 13px;
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      font-size: clamp(34px, 6vw, 62px);
+      line-height: 1.05;
+      margin: 0 auto 18px;
+      max-width: 900px;
+    }
+
+    .gradient {
+      background: linear-gradient(90deg, var(--rose), var(--blue));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero p {
+      max-width: 760px;
+      margin: 0 auto 18px;
+      color: var(--soft);
+      font-size: 19px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 0;
+      border-radius: 16px;
+      padding: 15px 22px;
+      font-weight: 900;
+      cursor: pointer;
+      transition: .2s ease;
+      font-size: 16px;
+    }
+
+    .btn-primary {
+      background: var(--rose);
+      color: #fff;
+      box-shadow: 0 10px 24px rgba(201,55,110,.25);
+    }
+
+    .btn-primary:hover {
+      background: var(--rose-dark);
+      transform: translateY(-1px);
+    }
+
+    .btn-ghost {
+      background: #fff;
+      border: 2px solid var(--blue);
+      color: var(--blue);
+    }
+
+    .section {
+      padding: 58px 0;
+    }
+
+    .quiz-box, .result-box, .offer-box {
+      max-width: 860px;
+      margin: 0 auto;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 26px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .progress-area {
+      margin-bottom: 24px;
+    }
+
+    .progress-text {
+      display: flex;
+      justify-content: space-between;
+      color: var(--soft);
+      font-size: 14px;
+      margin-bottom: 8px;
+      font-weight: 700;
+    }
+
+    .progress-track {
+      background: #EEF2F7;
+      border-radius: 999px;
+      height: 10px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      width: 0%;
+      height: 100%;
+      background: linear-gradient(90deg, var(--rose), var(--blue));
+      border-radius: 999px;
+      transition: width .3s ease;
+    }
+
+    .question h2 {
+      font-size: clamp(24px, 4vw, 34px);
+      line-height: 1.2;
+      margin: 0 0 18px;
+    }
+
+    .answers {
+      display: grid;
+      gap: 12px;
+    }
+
+    .answer {
+      width: 100%;
+      text-align: left;
+      background: #fff;
+      border: 2px solid var(--line);
+      border-radius: 16px;
+      padding: 16px;
+      cursor: pointer;
+      font-weight: 800;
+      font-size: 17px;
+      color: var(--ink);
+    }
+
+    .answer:hover, .answer:focus {
+      border-color: var(--rose);
+      outline: none;
+      background: var(--rose-light);
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .analyzing {
+      text-align: center;
+    }
+
+    .loader {
+      width: 54px;
+      height: 54px;
+      border: 6px solid var(--rose-light);
+      border-top-color: var(--rose);
+      border-radius: 50%;
+      margin: 0 auto 18px;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .checks {
+      max-width: 420px;
+      margin: 22px auto 0;
+      text-align: left;
+      color: var(--soft);
+      font-weight: 700;
+    }
+
+    .checks div {
+      margin: 8px 0;
+    }
+
+    .result-tag {
+      display: inline-block;
+      padding: 7px 13px;
+      border-radius: 999px;
+      color: #fff;
+      font-size: 13px;
+      font-weight: 900;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .result-box h2, .offer-box h2 {
+      font-size: clamp(30px, 5vw, 46px);
+      line-height: 1.1;
+      margin: 0 0 16px;
+    }
+
+    .result-box p, .offer-box p {
+      color: var(--soft);
+      font-size: 18px;
+    }
+
+    .highlight {
+      background: var(--rose-light);
+      border-left: 5px solid var(--rose);
+      padding: 18px;
+      border-radius: 16px;
+      margin: 22px 0;
+      color: var(--ink);
+      font-weight: 700;
+    }
+
+    .list {
+      padding-left: 0;
+      list-style: none;
+      display: grid;
+      gap: 10px;
+      color: var(--soft);
+      font-size: 17px;
+    }
+
+    .list li::before {
+      content: "✓ ";
+      color: var(--green);
+      font-weight: 900;
+    }
+
+    .price-card {
+      background: linear-gradient(135deg, var(--rose-light), var(--blue-light));
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 22px;
+      margin: 24px 0;
+    }
+
+    .price-card strong {
+      color: var(--rose);
+      font-size: 22px;
+    }
+
+    .cta-area {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 22px;
+    }
+
+    footer {
+      background: var(--rose);
+      color: #fff;
+      text-align: center;
+      padding: 26px 14px;
+      font-size: 14px;
+    }
+
+    .whats-float {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      background: #25D366;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 12px 28px rgba(0,0,0,.22);
+      z-index: 20;
+      color: #fff;
+      font-size: 28px;
+      font-weight: 900;
+    }
+
+    @media (max-width: 640px) {
+      .hero-card, .quiz-box, .result-box, .offer-box {
+        padding: 24px 18px;
+      }
+
+      .cta-area .btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="topbar">Método O Seu Lugar®</div>
+
+  <header class="hero">
+    <div class="wrap">
+      <div class="hero-card">
+        <div class="eyebrow">Diagnóstico Gratuito</div>
+        <h1>Por que vocês estão se afastando, <span class="gradient">mesmo que ainda exista amor?</span></h1>
+        <p>
+          Responda algumas perguntas e descubra qual padrão pode estar dificultando a comunicação,
+          a conexão emocional e a leveza no relacionamento.
+        </p>
+        <button class="btn btn-primary" onclick="startQuiz()">Começar diagnóstico</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="quiz" class="section hidden">
+      <div class="wrap">
+        <div class="quiz-box">
+          <div class="progress-area">
+            <div class="progress-text">
+              <span id="progressLabel">Pergunta 1 de 8</span>
+              <span id="progressPercent">12%</span>
+            </div>
+            <div class="progress-track">
+              <div class="progress-fill" id="progressFill"></div>
+            </div>
+          </div>
+
+          <div class="question">
+            <h2 id="questionText"></h2>
+            <div class="answers">
+              <button class="answer" onclick="answerQuestion('frequentemente')">Frequentemente</button>
+              <button class="answer" onclick="answerQuestion('asvezes')">Às vezes</button>
+              <button class="answer" onclick="answerQuestion('raramente')">Raramente</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="analyzing" class="section hidden">
+      <div class="wrap">
+        <div class="quiz-box analyzing">
+          <div class="loader"></div>
+          <h2>Analisando suas respostas...</h2>
+          <p>Estamos observando os principais sinais que apareceram no seu diagnóstico.</p>
+          <div class="checks">
+            <div>✓ Comunicação do casal</div>
+            <div>✓ Conexão emocional</div>
+            <div>✓ Padrões de silêncio ou defesa</div>
+            <div>✓ Possíveis pontos de atenção</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="result" class="section hidden">
+      <div class="wrap">
+        <div class="result-box">
+          <span class="result-tag" id="resultTag"></span>
+          <h2 id="resultTitle"></h2>
+          <div id="resultText"></div>
+
+          <div class="highlight">
+            Nem sempre o maior problema de um relacionamento é o que está acontecendo.
+            Muitas vezes é não conseguir entender por que está acontecendo.
+          </div>
+
+          <div id="consequenceText"></div>
+
+          <div class="cta-area">
+            <a id="whatsappResult" class="btn btn-primary" target="_blank" rel="noopener">
+              Quero entender minha situação
+            </a>
+            <button class="btn btn-ghost" onclick="restartQuiz()">Refazer diagnóstico</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="offer" class="section hidden">
+      <div class="wrap">
+        <div class="offer-box">
+          <div class="eyebrow">Próximo passo</div>
+          <h2>Sessão Clareza do Relacionamento®</h2>
+          <p>
+            Um encontro individual com Evandro Favoretto para entender o que pode estar travando
+            a comunicação, a conexão e a leveza no relacionamento.
+          </p>
+
+          <ul class="list">
+            <li>Identificar o principal padrão que está desgastando a relação.</li>
+            <li>Entender o que está por trás das discussões, silêncios ou afastamento.</li>
+            <li>Receber uma direção mais clara sobre por onde começar.</li>
+            <li>Evitar decisões tomadas no impulso ou na confusão emocional.</li>
+          </ul>
+
+          <div class="price-card">
+            <p>O valor normal da sessão é <strong>R$ 260</strong>.</p>
+            <p>
+              Mas toda semana eu separo apenas <strong>2 vagas sociais</strong> para pessoas que
+              realmente sentem que precisam de direção neste momento.
+            </p>
+            <p>Quando disponíveis, essas vagas podem ser realizadas pelo valor social de <strong>R$ 80</strong>.</p>
+          </div>
+
+          <div class="cta-area">
+            <a id="whatsappOffer" class="btn btn-primary" target="_blank" rel="noopener">
+              Verificar vaga social no WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <a class="whats-float" href="https://wa.me/5549998110445" target="_blank" rel="noopener" aria-label="Falar no WhatsApp">☏</a>
+
+  <footer>
+    Evandro Favoretto · Relacionamentos e Casais · Método O Seu Lugar®
+  </footer>
+
+  <script>
+    const whatsappNumber = "5549998110445";
+
+    const questions = [
+      {
+        text: "Quando vocês tentam conversar sobre algo importante, a conversa costuma virar discussão?",
+        scores: { comunicacao: 2, distancia: 1 }
+      },
+      {
+        text: "Você sente que precisa medir as palavras para não piorar o clima?",
+        scores: { silencio: 2, comunicacao: 1 }
+      },
+      {
+        text: "Um de vocês costuma se calar para evitar briga?",
+        scores: { silencio: 2, distancia: 1 }
+      },
+      {
+        text: "Depois de uma conversa difícil, vocês ficam distantes ou estranhos?",
+        scores: { distancia: 2, comunicacao: 1 }
+      },
+      {
+        text: "Você sente que fala, mas não se sente ouvido de verdade?",
+        scores: { comunicacao: 2, distancia: 1 }
+      },
+      {
+        text: "Você sente que o outro entende sua fala como cobrança, crítica ou ataque?",
+        scores: { comunicacao: 2, silencio: 1 }
+      },
+      {
+        text: "Vocês conversam mais sobre rotina, casa, filhos e tarefas do que sobre o que sentem?",
+        scores: { distancia: 2, direcao: 1 }
+      },
+      {
+        text: "Você sente que ainda existe amor, mas falta direção para vocês se reconectarem?",
+        scores: { direcao: 3, distancia: 1 }
+      }
+    ];
+
+    const results = {
+      comunicacao: {
+        title: "Comunicação em Alerta",
+        color: "#C9376E",
+        text: `
+          <p>Suas respostas mostram que vocês ainda tentam conversar, mas muitas vezes a conversa deixa de aproximar e começa a gerar defesa, tensão ou desgaste.</p>
+          <p>O problema talvez não seja falta de amor. Pode ser que vocês tenham entrado em um padrão onde um tenta se expressar, mas o outro escuta como cobrança, crítica ou ataque.</p>
+          <p>Quando isso se repete, assuntos importantes começam a ser evitados e a relação fica em estado de alerta.</p>
+        `,
+        consequence: `
+          <h3>O que acontece quando esse padrão continua?</h3>
+          <p>Com o tempo, pequenas conversas podem virar grandes conflitos. O casal passa a ter medo de tocar em certos assuntos e a comunicação, que deveria aproximar, começa a afastar.</p>
+        `
+      },
+      distancia: {
+        title: "Distância Emocional",
+        color: "#4DA6FF",
+        text: `
+          <p>Seu resultado indica que o relacionamento pode não estar em uma crise evidente, mas existe uma distância emocional acontecendo aos poucos.</p>
+          <p>Vocês podem estar convivendo, cumprindo a rotina e até mantendo carinho em alguns momentos, mas a sensação é que algo importante ficou menos presente.</p>
+          <p>Quando a conexão vai sendo substituída apenas por tarefas, obrigações e silêncio, o casal pode se afastar sem perceber.</p>
+        `,
+        consequence: `
+          <h3>O que acontece quando esse padrão continua?</h3>
+          <p>O risco não é apenas uma grande briga. Muitas vezes o maior risco é o afastamento lento, quando os dois continuam juntos, mas deixam de se sentir emocionalmente próximos.</p>
+        `
+      },
+      silencio: {
+        title: "Silêncio que Afasta",
+        color: "#7C3AED",
+        text: `
+          <p>Suas respostas mostram que o silêncio pode estar ocupando um espaço importante na relação.</p>
+          <p>Talvez você evite falar para não gerar briga, para não piorar o clima ou porque sente que não será compreendido.</p>
+          <p>O problema é que aquilo que não é falado não desaparece. Muitas vezes fica acumulado e se transforma em mágoa, frieza ou sensação de solidão dentro da relação.</p>
+        `,
+        consequence: `
+          <h3>O que acontece quando esse padrão continua?</h3>
+          <p>Quando o silêncio vira a principal forma de evitar conflito, a relação perde espaço para a presença, a escuta e a verdade emocional.</p>
+        `
+      },
+      direcao: {
+        title: "Existe Amor, Mas Falta Direção",
+        color: "#10B981",
+        text: `
+          <p>Seu diagnóstico mostra algo muito importante: talvez o amor não seja o maior problema.</p>
+          <p>Existe vontade de que a relação dê certo, mas parece faltar clareza sobre o que fazer, como conversar e por onde começar.</p>
+          <p>Quando existe amor, mas não existe direção, o casal pode se perder tentando resolver tudo sozinho.</p>
+        `,
+        consequence: `
+          <h3>O que acontece quando esse padrão continua?</h3>
+          <p>Sem clareza, decisões podem ser tomadas no impulso. A pessoa pode se calar, cobrar demais, desistir cedo ou continuar repetindo o mesmo padrão sem perceber.</p>
+        `
+      }
+    };
+
+    let currentQuestion = 0;
+    let scores = {
+      comunicacao: 0,
+      distancia: 0,
+      silencio: 0,
+      direcao: 0
+    };
+
+    let finalResultKey = "";
+
+    function startQuiz() {
+      document.querySelector(".hero").classList.add("hidden");
+      document.getElementById("quiz").classList.remove("hidden");
+      renderQuestion();
+      window.location.hash = "quiz";
+    }
+
+    function renderQuestion() {
+      const q = questions[currentQuestion];
+      document.getElementById("questionText").innerText = q.text;
+
+      const progress = ((currentQuestion + 1) / questions.length) * 100;
+      document.getElementById("progressFill").style.width = progress + "%";
+      document.getElementById("progressLabel").innerText = `Pergunta ${currentQuestion + 1} de ${questions.length}`;
+      document.getElementById("progressPercent").innerText = Math.round(progress) + "%";
+    }
+
+    function answerQuestion(type) {
+      const q = questions[currentQuestion];
+      let multiplier = 0;
+
+      if (type === "frequentemente") multiplier = 2;
+      if (type === "asvezes") multiplier = 1;
+      if (type === "raramente") multiplier = 0;
+
+      for (const key in q.scores) {
+        scores[key] += q.scores[key] * multiplier;
+      }
+
+      currentQuestion++;
+
+      if (currentQuestion < questions.length) {
+        renderQuestion();
+      } else {
+        showAnalyzing();
+      }
+    }
+
+    function showAnalyzing() {
+      document.getElementById("quiz").classList.add("hidden");
+      document.getElementById("analyzing").classList.remove("hidden");
+
+      setTimeout(showResult, 1800);
+    }
+
+    function showResult() {
+      document.getElementById("analyzing").classList.add("hidden");
+
+      finalResultKey = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
+      const result = results[finalResultKey];
+
+      document.getElementById("resultTag").innerText = "Seu principal padrão";
+      document.getElementById("resultTag").style.background = result.color;
+      document.getElementById("resultTitle").innerText = result.title;
+      document.getElementById("resultText").innerHTML = result.text;
+      document.getElementById("consequenceText").innerHTML = result.consequence;
+
+      const msg = encodeURIComponent(
+        `Olá, Evandro. Acabei de concluir o Diagnóstico do Relacionamento e meu resultado foi "${result.title}". Gostaria de entender melhor minha situação e saber se ainda existe vaga para a Sessão Clareza do Relacionamento.`
+      );
+
+      const link = `https://wa.me/${whatsappNumber}?text=${msg}`;
+      document.getElementById("whatsappResult").href = link;
+      document.getElementById("whatsappOffer").href = link;
+
+      document.getElementById("result").classList.remove("hidden");
+      document.getElementById("offer").classList.remove("hidden");
+      window.location.hash = "result";
+    }
+
+    function restartQuiz() {
+      currentQuestion = 0;
+      scores = {
+        comunicacao: 0,
+        distancia: 0,
+        silencio: 0,
+        direcao: 0
+      };
+
+      document.getElementById("result").classList.add("hidden");
+      document.getElementById("offer").classList.add("hidden");
+      document.getElementById("quiz").classList.remove("hidden");
+      renderQuestion();
+      window.location.hash = "quiz";
+    }
+  </script>
+</body>
+</html>
